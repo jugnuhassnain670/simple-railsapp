@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+    app:
+        container_name: docker-aj-app
+        restart: always
+        build: .
+        ports: 
+            - '3000:3000'
+        volumes:
+            - .:/railsapp
+        command: ./_commands/docker_start_bundle.sh
+        # volumes_from:
+        #     - box
+        # links:
+        #     - db
+
+# # https://medium.com/magnetis-backstage/how-to-cache-bundle-install-with-docker-7bed453a5800
+#     box:
+#         container_name: busybox-gems-aj-app
+#         image: busybox
+#         volumes:
+#             - /box
+
+# db:
+#   image: mysql
+#   environment:
+#     MYSQL_ROOT_PASSWORD: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+#   ports:
+#     - "3306:3306"
+#     volumes:
+#     - "/tmp/mysql-data:/var/lib/mysql"            
